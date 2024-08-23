@@ -49,7 +49,7 @@ static_assert(sizeof(EADK::Rect) == sizeof(eadk_rect_t), "EADK::Rect should matc
 namespace Screen {
   constexpr uint16_t Width = EADK_SCREEN_WIDTH;
   constexpr uint16_t Height = EADK_SCREEN_HEIGHT;
-  constexpr Rect Rect(0, 0, Width, Height);
+  constexpr EADK::Rect Rect(0, 0, Width, Height);
 }
 
 namespace Display {
