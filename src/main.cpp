@@ -18,7 +18,7 @@ int main() {
 
   Keyboard::State keyState = Keyboard::scan();
 
-  while (! (keyState.keyDown(Keyboard::Key::Home) || keyState.keyDown(Keyboard::Key::Power) || keyState.keyDown(Keyboard::Key::Back))) {
+  while (! (keyState.keyDown(Keyboard::Key::Home) || keyState.keyDown(Keyboard::Key::Back))) {
     keyState = Keyboard::scan();
 
     clear();
@@ -30,7 +30,7 @@ int main() {
 
   do {
      keyState = Keyboard::scan();
-  } while (keyState.keyDown(Keyboard::Key::Home) || keyState.keyDown(Keyboard::Key::Power) || keyState.keyDown(Keyboard::Key::Back));
+  } while (keyState.keyDown(Keyboard::Key::Home) || keyState.keyDown(Keyboard::Key::Back));
 
   return 0;
 }

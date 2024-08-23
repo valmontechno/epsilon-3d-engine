@@ -16,7 +16,9 @@ src = $(addprefix src/,\
   graphics.cpp \
   rgb332.cpp \
   vec2.cpp \
+  vec3.cpp \
   tri2.cpp \
+  tri3.cpp \
 )
 
 CPPFLAGS = -std=c++11 -fno-exceptions
