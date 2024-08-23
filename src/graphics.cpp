@@ -7,12 +7,16 @@ using EADK::Color;
 
 uint8_t graphics::buffer[Screen::Height][Screen::Width];
 
+const float screenRatio = (float)Screen::Height / (float)Screen::Width;
+
 void graphics::draw() {
   for (uint8_t i = 0; i < Screen::Height; i++) {
+    Color bufferRow[Screen::Width];
     for (uint16_t j = 0; j < Screen::Width; j++)
     {
-      Display::pushRectUniform(Rect(j, i, 1, 1), rgb332ToColor(buffer[i][j]));
+        bufferRow[j] = rgb332ToColor(buffer[i][j]);
     }
+    Display::pushRect(Rect(0, i, Screen::Width, 1), bufferRow);
   }
 }
 
@@ -55,4 +59,12 @@ void graphics::putTriangle(Tri2 tri, uint8_t color) {
       }
     }
   }
+}
+
+Vec2 graphics::vectorToScreen(Vec2 p) {
+    return Vec2((screenRatio * p.x + 1) * Screen::Width / 2, (-p.y + 1) * Screen::Height / 2);
+}
+
+Tri2 graphics::triangleToScreen(Tri2 tri) {
+    return Tri2(vectorToScreen(tri.p0), vectorToScreen(tri.p1), vectorToScreen(tri.p2));
 }

@@ -8,9 +8,13 @@ using namespace graphics;
 extern const char eadk_app_name[] __attribute__((section(".rodata.eadk_app_name"))) = "3D Engine";
 extern const uint32_t eadk_api_level __attribute__((section(".rodata.eadk_api_level"))) = 0;
 
-int t = 0;
-
 int main() {
+
+  Tri2 triangle(
+    Vec2(-0.5f, -0.5f),
+    Vec2(0.5f, -0.5f),
+    Vec2(0.0f, 0.5f)
+  );
 
   Keyboard::State keyState = Keyboard::scan();
 
@@ -19,11 +23,9 @@ int main() {
 
     clear();
 
-    putTriangle(Tri2(Vec2(0, 0), Vec2(Screen::Width, Screen::Height/2), Vec2(t, Screen::Height)), 0b11100101);
+    putTriangle(triangleToScreen(triangle), 0b11100101);
 
     draw();
-
-    t++;
   }
 
   do {
