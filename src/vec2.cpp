@@ -25,3 +25,7 @@ Vec2 Vec2::operator-(const Vec2& other) const {
 Vec2 Vec2::operator*(const float& other) const {
     return {x * other, y * other};
 }
+
+Vec2 Vec2::operator/(const float& other) const {
+    return {x / other, y / other};
+}

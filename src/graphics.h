@@ -13,7 +13,7 @@ namespace graphics {
     void draw();
     void clear();
     void putTriangle(Tri2 tri, uint8_t color);
-    Vec2 vectorToScreen(Vec2 p);
+    Vec2 vectorToScreen(Vec2 v);
     Tri2 triangleToScreen(Tri2 tri);
 
 }

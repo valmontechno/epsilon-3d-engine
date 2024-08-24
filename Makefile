@@ -12,9 +12,11 @@ $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
 src = $(addprefix src/,\
-  main.cpp \
+ main.cpp \
+  engine3d.cpp \
   graphics.cpp \
   rgb332.cpp \
+  maths.cpp \
   vec2.cpp \
   vec3.cpp \
   tri2.cpp \

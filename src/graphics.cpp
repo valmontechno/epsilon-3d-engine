@@ -61,8 +61,8 @@ void graphics::putTriangle(Tri2 tri, uint8_t color) {
   }
 }
 
-Vec2 graphics::vectorToScreen(Vec2 p) {
-    return Vec2((screenRatio * p.x + 1) * Screen::Width / 2, (-p.y + 1) * Screen::Height / 2);
+Vec2 graphics::vectorToScreen(Vec2 v) {
+    return Vec2((screenRatio * v.x + 1) * Screen::Width / 2, (-v.y + 1) * Screen::Height / 2);
 }
 
 Tri2 graphics::triangleToScreen(Tri2 tri) {
