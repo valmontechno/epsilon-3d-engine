@@ -39,6 +39,7 @@ struct Vec3 {
 struct Tri3 {
     Vec3 p0, p1, p2;
 
+    Tri3();
     Tri3(Vec3 p0, Vec3 p1, Vec3 p2);
 
     Tri3 translate(Vec3 v);

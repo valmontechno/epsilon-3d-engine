@@ -1,11 +1,10 @@
 #include "eadkpp.h"
-#include "engine3d.h"
-#include "graphics.h"
+#include "rietveld.h"
+#include "mondrian.h"
 #include "vMaths.h"
 
 using namespace EADK;
-using namespace engine3d;
-using namespace graphics;
+using namespace mondrian;
 
 extern const char eadk_app_name[] __attribute__((section(".rodata.eadk_app_name"))) = "3D Engine";
 extern const uint32_t eadk_api_level __attribute__((section(".rodata.eadk_api_level"))) = 0;
@@ -18,7 +17,11 @@ int main() {
     Vec3(0.0f, 0.5f, 0.0f)
   );
 
+  Tri3 mesh[] = {triangle};
+
   Keyboard::State keyState = Keyboard::scan();
+
+  Camera camera(Vec3(0.0f, 0.0f, -1.0f), 0.0f, 0.0f, 1.0f);
 
   float t = 0.0f;
 
@@ -27,7 +30,7 @@ int main() {
 
     clear();
 
-    putTriangle(triangleToScreen(triangleProjection(triangle.rotateY(t).translate(Vec3(0.0f, 0.0f, 1.0f)))), 0b11100101);
+    camera.pushMesh(mesh, 1, 0b11100101);
 
     draw();
 
