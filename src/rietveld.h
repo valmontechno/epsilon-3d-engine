@@ -14,17 +14,20 @@ class Camera {
     float pitch, yaw;
     float focalLenth;
 
-    Camera(Vec3 position, float pitch, float yaw, float focalLenth = 1.0f);
+    Camera(Vec3 position, float pitch, float yaw, float focalLenth);
 
-    void pushTriangle(Tri3 tri, uint8_t color);
-    void pushMesh(Tri3 mesh[], size_t size, uint8_t color);
+    Vec3 getForward() const;
+    Vec3 getRight() const;
+
+    void pushTriangle(Tri3 tri, uint8_t color) const;
+    void pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const;
 
     private:
-    Vec2 vectorProjection(Vec3 v);
-    Tri2 triangleProjection(Tri3 tri);
+    Vec2 vectorProjection(Vec3 v) const;
+    Tri2 triangleProjection(Tri3 tri) const;
 
-    Vec2 vectorToScreen(Vec2 v);
-    Tri2 triangleToScreen(Tri2 tri);
+    Vec2 vectorToScreen(Vec2 v) const;
+    Tri2 triangleToScreen(Tri2 tri) const;
 };
 
 #endif

@@ -144,6 +144,10 @@ static inline void msleep(uint32_t ms) {
   return eadk_timing_msleep(ms);
 }
 
+static inline uint64_t getMillisTime() {
+  return eadk_timing_millis();
+}
+
 }
 
 static inline uint32_t random() {

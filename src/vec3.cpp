@@ -13,24 +13,52 @@ Vec3::Vec3(float x, float y, float z) {
     this->z = z;
 }
 
-Vec3 Vec3::operator+(const Vec3& other) const {
-    return {x + other.x, y + other.y, z + other.z};
+Vec3 Vec3::operator+(const Vec3& v) const {
+    return {x + v.x, y + v.y, z + v.z};
 }
 
 Vec3 Vec3::operator-() const {
     return {-x, -y, -z};
 }
 
-Vec3 Vec3::operator-(const Vec3& other) const {
-    return {x - other.x, y - other.y, z - other.z};
+Vec3 Vec3::operator-(const Vec3& v) const {
+    return {x - v.x, y - v.y, z - v.z};
 }
 
-Vec3 Vec3::operator*(const float& other) const {
-    return {x * other, y * other, z * other};
+Vec3 Vec3::operator*(const float& n) const {
+    return {x * n, y * n, z * n};
 }
 
-Vec3 Vec3::operator/(const float& other) const {
-    return {x / other, y / other, z / other};
+Vec3 Vec3::operator/(const float& n) const {
+    return {x / n, y / n, z / n};
+}
+
+Vec3& Vec3::operator+=(const Vec3& v) {
+    x += v.x;
+    y += v.y;
+    z += v.z;
+    return *this;
+}
+
+Vec3& Vec3::operator-=(const Vec3& v) {
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+    return *this;
+}
+
+Vec3& Vec3::operator*=(const float& n) {
+    x *= n;
+    y *= n;
+    z *= n;
+    return *this;
+}
+
+Vec3& Vec3::operator/=(const float& n) {
+    x /= n;
+    y /= n;
+    z /= n;
+    return *this;
 }
 
 Vec3 Vec3::rotateX(float pitch) {
@@ -43,8 +71,8 @@ Vec3 Vec3::rotateX(float pitch) {
 
 Vec3 Vec3::rotateY(float yaw) {
     return Vec3(
-        cos((double)yaw) * x + sin((double)yaw) * z,
+        cos(yaw) * x + sin(yaw) * z,
         y,
-        -sin((double)yaw) * x + cos((double)yaw) * z
+        -sin(yaw) * x + cos(yaw) * z
     );
 }

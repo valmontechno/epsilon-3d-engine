@@ -7,11 +7,11 @@ struct Vec2 {
     Vec2();
     Vec2(float x, float y);
 
-    Vec2 operator+(const Vec2& other) const;
+    Vec2 operator+(const Vec2& v) const;
     Vec2 operator-() const;
-    Vec2 operator-(const Vec2& other) const;
-    Vec2 operator*(const float& other) const;
-    Vec2 operator/(const float& other) const;
+    Vec2 operator-(const Vec2& v) const;
+    Vec2 operator*(const float& n) const;
+    Vec2 operator/(const float& n) const;
 };
 
 struct Tri2 {
@@ -26,11 +26,15 @@ struct Vec3 {
     Vec3();
     Vec3(float x, float y, float z);
 
-    Vec3 operator+(const Vec3& other) const;
+    Vec3 operator+(const Vec3& v) const;
     Vec3 operator-() const;
-    Vec3 operator-(const Vec3& other) const;
-    Vec3 operator*(const float& other) const;
-    Vec3 operator/(const float& other) const;
+    Vec3 operator-(const Vec3& v) const;
+    Vec3 operator*(const float& x) const;
+    Vec3 operator/(const float& x) const;
+    Vec3& operator+=(const Vec3& v);
+    Vec3& operator-=(const Vec3& v);
+    Vec3& operator*=(const float& x);
+    Vec3& operator/=(const float& x);
 
     Vec3 rotateX(float pitch);
     Vec3 rotateY(float yaw);
