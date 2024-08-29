@@ -18,8 +18,8 @@ class Camera {
 
     Vec3 getForward() const;
     Vec3 getRight() const;
+    Vec3 getLookAt() const;
 
-    void pushTriangle(Tri3 tri, uint8_t color) const;
     void pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const;
 
     private:
@@ -28,6 +28,8 @@ class Camera {
 
     Vec2 vectorToScreen(Vec2 v) const;
     Tri2 triangleToScreen(Tri2 tri) const;
+
+    void pushTriangle(Tri3 tri, uint8_t color) const;
 };
 
 #endif

@@ -46,8 +46,8 @@ int main() {
   while (! (keyState.keyDown(Key::Home) || keyState.keyDown(Key::Back))) {
     keyState = Keyboard::scan();
 
-    if (keyState.keyDown(Key::OK)) {
-
+    if (keyState.keyDown(Key::OK))
+    {
       if (keyState.keyDown(Key::Down)) {
         camera.pitch = std::max(camera.pitch - rotationSpeed * deltaTime, -HALF_PI);
       }
@@ -60,20 +60,27 @@ int main() {
       if (keyState.keyDown(Key::Right)) {
         camera.yaw -= rotationSpeed * deltaTime;
       }
-
-    } else {
-
-      if(keyState.keyDown(Key::Down)) {
+    }
+    else
+    {
+      if (keyState.keyDown(Key::Down)) {
         camera.position -= camera.getForward() * speed * deltaTime;
-      }if(keyState.keyDown(Key::Up)) {
+      }
+      if (keyState.keyDown(Key::Up)) {
         camera.position += camera.getForward() * speed * deltaTime;
       }
-      if(keyState.keyDown(Key::Left)) {
+      if (keyState.keyDown(Key::Left)) {
         camera.position -= camera.getRight() * speed * deltaTime;
-      }if(keyState.keyDown(Key::Right)) {
+      }
+      if (keyState.keyDown(Key::Right)) {
         camera.position += camera.getRight() * speed * deltaTime;
       }
-
+    }
+    if (keyState.keyDown(Key::Minus)) {
+      camera.position.y -= speed * deltaTime;
+    }
+    if (keyState.keyDown(Key::Plus)) {
+      camera.position.y += speed * deltaTime;
     }
 
     clear();;
