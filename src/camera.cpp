@@ -58,6 +58,8 @@ void Camera::pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const {
         if (d1 > 0.0f) out[outLength++] = tri.p1; else in[inLength++] = tri.p1;
         if (d2 > 0.0f) out[outLength++] = tri.p2; else in[inLength++] = tri.p2;
 
+        bool isInverted = d0 * d2 > 0.0f;
+
         uint8_t clippedTriLength = 0;
         if (outLength == 0)
         {
@@ -69,8 +71,13 @@ void Camera::pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const {
             Vec3 c0 = Vec3::linePlaneIntersection(planeNormal, planePoint, out[0], in[0]);
             Vec3 c1 = Vec3::linePlaneIntersection(planeNormal, planePoint, out[0], in[1]);
 
-            clippedTri[0] = Tri3(c0, in[0], c1);
-            clippedTri[1] = Tri3(c1, in[0], in[1]);
+            if (isInverted) {
+                clippedTri[0] = Tri3(c1, in[1], c0);
+                clippedTri[1] = Tri3(c0, in[1], in[0]);
+            } else {
+                clippedTri[0] = Tri3(c0, in[0], c1);
+                clippedTri[1] = Tri3(c1, in[0], in[1]);
+            }
             clippedTriLength = 2;
         }
         else if (outLength == 2)
@@ -78,7 +85,11 @@ void Camera::pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const {
             Vec3 c0 = Vec3::linePlaneIntersection(planeNormal, planePoint, out[0], in[0]);
             Vec3 c1 = Vec3::linePlaneIntersection(planeNormal, planePoint, out[1], in[0]);
 
-            clippedTri[0] = Tri3(c0, c1, in[0]);
+            if (isInverted) {
+                clippedTri[0] = Tri3(c0, in[0], c1);
+            } else {
+                clippedTri[0] = Tri3(c0, c1, in[0]);
+            }
             clippedTriLength = 1;
         }
 
@@ -86,8 +97,11 @@ void Camera::pushMesh(const Tri3 mesh[], size_t size, uint8_t color) const {
         for (uint8_t i = 0; i < clippedTriLength; i++)
         {
             Tri3 tri = clippedTri[i];
+            Vec3 normal = Vec3::cross(tri.p1 - tri.p0, tri.p2 - tri.p0);
 
-            pushTriangle(tri, color);
+            if (Vec3::dot(normal, tri.p0 - position) < 0.0f) {
+                pushTriangle(tri, color);
+            }
         }
         
 

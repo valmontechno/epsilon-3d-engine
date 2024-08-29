@@ -82,6 +82,14 @@ float Vec3::dot(Vec3 a, Vec3 b) {
     return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
+Vec3 Vec3::cross(Vec3 a, Vec3 b) {
+    return Vec3(
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    );
+}
+
 Vec3 Vec3::linePlaneIntersection(Vec3 planeNormal, Vec3 planePoint, Vec3 v1, Vec3 v2) {
     Vec3 u = v2 - v1;
     double dotp = dot(planeNormal, u);

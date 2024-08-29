@@ -40,6 +40,7 @@ struct Vec3 {
     Vec3 rotateY(float yaw);
 
     static float dot(Vec3 a, Vec3 b);
+    static Vec3 cross(Vec3 a, Vec3 b);
     static Vec3 linePlaneIntersection(Vec3 planeNormal, Vec3 planePoint, Vec3 p0, Vec3 p1);
 };
 
