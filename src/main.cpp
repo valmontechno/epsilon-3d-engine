@@ -3,7 +3,6 @@
 #include "mondrian.h"
 #include "vMaths.h"
 #include "maths.h"
-#include <algorithm>
 
 using namespace EADK;
 using namespace mondrian;
@@ -35,7 +34,7 @@ int main() {
 
   Keyboard::State keyState = Keyboard::scan();
 
-  Camera camera(Vec3(0.0f, 0.0f, -2.0f), 0.0f, 0.0f, 2.0f);
+  Camera camera(Vec3(0.0f, 0.0f, -2.0f), 0.0f, 0.0f, 2.0f, 0.01f);
 
   const float speed = 2.0f;
   const float rotationSpeed = 1.0f;
@@ -43,16 +42,16 @@ int main() {
   float deltaTime = 0.0f;
   float lastTime = Timing::getMillisTime();
 
-  while (! (keyState.keyDown(Key::Home) || keyState.keyDown(Key::Back))) {
+  while (! (keyState.keyDown(Key::Home))) {
     keyState = Keyboard::scan();
 
     if (keyState.keyDown(Key::OK))
     {
       if (keyState.keyDown(Key::Down)) {
-        camera.pitch = std::max(camera.pitch - rotationSpeed * deltaTime, -HALF_PI);
+        camera.pitch = max(camera.pitch - rotationSpeed * deltaTime, -HALF_PI);
       }
       if (keyState.keyDown(Key::Up)) {
-        camera.pitch = std::min(camera.pitch + rotationSpeed * deltaTime, HALF_PI);
+        camera.pitch = min(camera.pitch + rotationSpeed * deltaTime, HALF_PI);
       }
       if (keyState.keyDown(Key::Left)) {
         camera.yaw += rotationSpeed * deltaTime;
@@ -87,15 +86,11 @@ int main() {
 
     camera.pushMesh(mesh, 2, 0b11100101);
 
-    draw();
+    mondrian::draw();
 
     deltaTime = (Timing::getMillisTime() - lastTime) / 1000;
     lastTime = Timing::getMillisTime();
   }
-
-  do {
-     keyState = Keyboard::scan();
-  } while (keyState.keyDown(Key::Home) || keyState.keyDown(Key::Back));
 
   return 0;
 }

@@ -1,6 +1,6 @@
 #include "vMaths.h"
 #include "maths.h"
-#include <algorithm>
+// #include <algorithm>
 
 Vec3::Vec3() {
     x = 0.0f;
@@ -82,18 +82,14 @@ float Vec3::dot(Vec3 a, Vec3 b) {
     return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-double Vec3::dotd(Vec3 a, Vec3 b) {
-    return (double)a.x*(double)b.x + (double)a.y*(double)b.y + (double)a.z*(double)b.z;
-}
-
 Vec3 Vec3::linePlaneIntersection(Vec3 planeNormal, Vec3 planePoint, Vec3 v1, Vec3 v2) {
     Vec3 u = v2 - v1;
-    double dotp = dotd(planeNormal, u);
-    if (/*abs(dotp) < 0.00001*/ dotp > 0 ? dotp < 0.00001 : dotp > -0.00001) {
-        return Vec3(0, 0, 10);
+    double dotp = dot(planeNormal, u);
+    if (abs(dotp) < 1e-5f) {
+        return Vec3();
     }
     Vec3 w = v1 - planePoint;
-    double si = -dotd(planeNormal, w) / dotp;
+    double si = -dot(planeNormal, w) / dotp;
     u = u * si;
     return v1 + u;
 }

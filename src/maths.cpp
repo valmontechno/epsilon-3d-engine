@@ -43,3 +43,25 @@ float sqrt(float x) {
     }
     return x;
 }
+
+float abs(float x) {
+    return x >= 0.0f ? x : -x;
+}
+
+float max(float a, float b) {
+    return a > b ? a : b;
+}
+
+float max(float a, float b, float c) {
+    float m = a > b ? a : b;
+    return c > m ? c : m;
+}
+
+float min(float a, float b) {
+    return a < b ? a : b;
+}
+
+float min(float a, float b, float c) {
+    float m = a < b ? a : b;
+    return c < m ? c : m;
+}

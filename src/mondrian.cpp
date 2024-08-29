@@ -1,7 +1,7 @@
 #include "mondrian.h"
 #include "eadkpp.h"
 #include "rgb332.h"
-#include <algorithm>
+#include "maths.h"
 
 using EADK::Color;
 
@@ -33,10 +33,10 @@ float eq(Vec2 p, Vec2 a, Vec2 b) {
 }
   
 void mondrian::putTriangle(Tri2 tri, uint8_t color) {
-  int xMin = std::min({tri.p0.x, tri.p1.x, tri.p2.x});
-  int xMax = std::max({tri.p0.x, tri.p1.x, tri.p2.x});
-  int yMin = std::min({tri.p0.y, tri.p1.y, tri.p2.y});
-  int yMax = std::max({tri.p0.y, tri.p1.y, tri.p2.y});
+  int xMin = min(tri.p0.x, tri.p1.x, tri.p2.x);
+  int xMax = max(tri.p0.x, tri.p1.x, tri.p2.x);
+  int yMin = min(tri.p0.y, tri.p1.y, tri.p2.y);
+  int yMax = max(tri.p0.y, tri.p1.y, tri.p2.y);
 
   for (int y = yMin; y < yMax; y++)
   {

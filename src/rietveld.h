@@ -13,8 +13,9 @@ class Camera {
     Vec3 position;
     float pitch, yaw;
     float focalLenth;
+    float zNear;
 
-    Camera(Vec3 position, float pitch, float yaw, float focalLenth);
+    Camera(Vec3 position, float pitch, float yaw, float focalLenth, float zNear);
 
     Vec3 getForward() const;
     Vec3 getRight() const;
