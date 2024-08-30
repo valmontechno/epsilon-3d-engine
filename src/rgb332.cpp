@@ -14,3 +14,13 @@ Color rgb332ToColor(uint8_t rgb332) {
 
     return Color((r << 16) | (g << 8) | b);
 }
+
+void unpackRgb332(uint8_t rgb332, uint8_t& r, uint8_t& g, uint8_t& b) {
+    r = (rgb332 >> 5) & 0x07;
+    g = (rgb332 >> 2) & 0x07;
+    b = rgb332 & 0x03;
+}
+
+uint8_t packRgb332(uint8_t r, uint8_t g, uint8_t b) {
+    return (r << 5) | (g << 2) | b;
+}
